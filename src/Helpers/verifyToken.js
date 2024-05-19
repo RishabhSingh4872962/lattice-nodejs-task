@@ -1,6 +1,6 @@
-import { config } from "../Config/config";
-
-export const verifyToken = (token) => {
+import { config } from "../Config/config.js";
+import jwt from "jsonwebtoken"
+export default function verifyToken(token){
 
     if (config?.jwtSecret) {
   

@@ -1,3 +1,4 @@
+"use strict"
 import { config } from "./src/Config/config.js";
 import connectDB from "./src/Config/db.js";
 import app from "./src/app.js";

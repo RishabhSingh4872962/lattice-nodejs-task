@@ -3,11 +3,12 @@ import createHttpError from "http-errors";
 
 import bcrypt from "bcrypt";
 import { generateToken } from "../../Helpers/generateToken.js";
+import mongoose from "mongoose";
 
 const getPaitent = async (req, res, next) => {
-  const id = req.params;
-  if (!id) {
-    return next(createHttpError(400, "Enter the valid id"));
+  const {id} = req.params;
+  if (!id || !mongoose.isValidObjectId(id)) {
+   return sendErrorResponse(next,400,"Enter the valid Credensials")
   }
   const patient = await Patient.findOne({ _id: id });
   if (!patient) {
@@ -29,7 +30,7 @@ const loginPatient = async (req, res, next) => {
   if (!bcrypt.compare(password, patient.password)) {
     return next(createHttpError(400, "Enter the valid Credensials"));
   }
-  const jwtToken=await generateToken({id: patient._id,email:patient.email});
+  const jwtToken=await generateToken({id: patient._id,email:patient.email,role:"patient"});
 
   return res.status(200).cookie("token",jwtToken,{
     maxAge:3*24*60*60*1000, httpOnly: true
@@ -42,3 +43,8 @@ const logoutPatient=async(req,res,next)=>{
 
 
 export {getPaitent,loginPatient,logoutPatient}
+
+
+function sendErrorResponse(next,statusCode,msg) {
+  return next(createHttpError(statusCode,msg))
+}

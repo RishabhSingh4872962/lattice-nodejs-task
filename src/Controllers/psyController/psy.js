@@ -50,6 +50,7 @@ const psyLogin = async (req, res, next) => {
   const jwtToken = generateToken({
     id: psychiatrist._id,
     email: psychiatrist.email,
+    role:"psy"
   });
 
   return res

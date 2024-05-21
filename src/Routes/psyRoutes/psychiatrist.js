@@ -20,7 +20,7 @@ const upload = multer({
 const psyRouter = express.Router();
 
 function checkRole(req, res, next) {
-  let { role } = req.body;
+  let { role } = req.user;
 
   if (!role) {
     return next(createHttpError(400, "Need a Role Access Credensials"));
@@ -29,7 +29,7 @@ function checkRole(req, res, next) {
   if (role == "psy") {
     next();
   } else {
-    return next(createHttpError(400, "Enter the valid Credensials"));
+    return next(createHttpError(400, "Need a Access Role"));
   }
 }
 
@@ -45,7 +45,8 @@ psyRouter.post(
   upload.single("photo"),
   patientRegisterValidations,
   isUserLogged,
+  checkRole,
   asyncErrorHandler(registerPaitent)
 );
-psyRouter.delete("/:id", isUserLogged, asyncErrorHandler(removePatient));
+psyRouter.delete("/:id", isUserLogged, checkRole,asyncErrorHandler(removePatient));
 export default psyRouter;

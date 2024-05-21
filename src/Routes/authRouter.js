@@ -27,7 +27,7 @@ function checkRole(role, next) {
 }
 
 async function logoutRoleBasedUser(req, res, next) {
-  const role = checkRole(req.body.role, next); // refactor code 
+  const role = checkRole(req.user.role, next); // refactor code 
 
   return res
     .status(200)

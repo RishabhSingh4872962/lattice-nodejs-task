@@ -1,3 +1,48 @@
+## Important Insructions
+You have to make sure the your system have node version-20,npm v-10.5.2 , mongodb ,git and github installed in your machine
+
+
+try to some commands to test it
+```
+node -v 
+npm -v  
+mongod
+```
+Result should be looks like
+```
+v20.12.2
+10.5.2
+mongod (open in other ternimal )
+```
+if any other throw the error check some youtube videos to download and setup manually node,npm , mongodb
+and git,github
+
+If All good!
+
+step 1 - remove .example from  .env.example and save it  file name should like this  .env
+
+step 2 - clone my repo in your local system run this command
+```
+git clone https://github.com/RishabhSingh4872962/lattice-nodejs-task.git
+```
+
+step 3 - open any code editor in the cloned folder 
+
+step 4 - run this command in terminal
+```
+ npm install
+```
+and run 
+```
+mongod 
+```
+in other ternimal
+
+step-5 - run this command
+```
+npm run dev
+```
+
 # Psychiatric Patient Registration System
 
 A web backend for a psychiatric patient registration system. Psychiatrists can register patients through a mobile/web portal, and various functionalities are provided, including patient registration and fetching hospital details.

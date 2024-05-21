@@ -8,6 +8,6 @@ const hospitalRouter=express.Router();
 
 
 hospitalRouter.get("/",asyncErrorHandler(getHospital));
-hospitalRouter.post("/register",asyncErrorHandler(registerHospital));
+hospitalRouter.post("/register",asyncErrorHandler(registerHospital));//1st check done 
 
 export default hospitalRouter

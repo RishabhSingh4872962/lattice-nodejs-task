@@ -4,6 +4,7 @@ import mongoose, { Types } from "mongoose";
 import { Hospital } from "../../Models/hospital.model.js";
 import { Psychiatrist } from "../../Models/psychiatrist.model.js";
 import { Patient } from "../../Models/patient.model.js";
+
 export const getHospital = async (req, res, next) => {
   const { id } = req.body;
 
@@ -22,9 +23,11 @@ export const getHospital = async (req, res, next) => {
   });
 
   const psychiatristArr =await Promise.all(psychiatrist.map( async(psy) => {
+    const allPatient=await  Patient.find({ psychiatrists: { $in: psy._id } }).select("name email");
     return {
       id:psy._id,name:psy.name,
-      Patient:(await  Patient.find({ psychiatrists: { $in: psy._id } })).length,
+      patientCount:allPatient.length,
+      Patient:allPatient,
     };
   }));
 
@@ -45,8 +48,8 @@ export const getHospital = async (req, res, next) => {
 
 export const registerHospital = async (req, res, next) => {
   const { name } = req.body;
-  if (!name) {
-    return next(createHttpError(400, "Enter the valid credensials"));
+  if (!name ) {
+    return next(createHttpError(400, "Enter the valid credensials,"));
   }
 
   const existHospital = await Hospital.findOne({

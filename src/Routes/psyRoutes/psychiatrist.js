@@ -1,21 +1,41 @@
-
 import express from "express";
 import { asyncErrorHandler } from "../../Errors/aysncErrorHandler.js";
-import { psyLogin, psyLogout, registerPaitent, registerPsy, removePatient } from "../../Controllers/psyController/psy.js";
+import {
+  registerPaitent,
+  registerPsy,
+  removePatient,
+} from "../../Controllers/psyController/psy.js";
 import multer from "multer";
 import { isUserLogged } from "../../Middlewares/isUserLogged.js";
+import createHttpError from "http-errors";
 
+const upload = multer({
+  dest: "/patient_photo",
+});
 
-const upload=multer({
-    dest:"/patient_photo"
-})
+const psyRouter = express.Router();
 
-const psyRouter=express.Router();
+function checkRole(req, res, next) {
+  let { role } = req.body;
 
-psyRouter.post("/register",asyncErrorHandler(registerPsy));
-psyRouter.get("/login",asyncErrorHandler(psyLogin));
-psyRouter.post("/logout",isUserLogged,asyncErrorHandler(psyLogout));
+  if (!role) {
+    return next(createHttpError(400, "Need a Role Access Credensials"));
+  }
 
-psyRouter.post("/add",isUserLogged,upload.single("photo"),asyncErrorHandler(registerPaitent));
-psyRouter.delete("/:id",isUserLogged,asyncErrorHandler(removePatient));
-export default psyRouter
+  if (role == "psy") {
+    next();
+  } else {
+    return next(createHttpError(400, "Enter the valid Credensials"));
+  }
+}
+
+psyRouter.post("/register",checkRole, asyncErrorHandler(registerPsy));
+
+psyRouter.post(
+  "/add",
+  upload.single("photo"),
+  isUserLogged,
+  asyncErrorHandler(registerPaitent)
+);
+psyRouter.delete("/:id", isUserLogged, asyncErrorHandler(removePatient));
+export default psyRouter;

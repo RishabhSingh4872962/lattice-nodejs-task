@@ -8,6 +8,7 @@ import { globalErrorHandler } from "./Middlewares/globalErrorHandler.js";
 import hospitalRouter from "./Routes/hospitalRoutes/hospital.js";
 import patientRouter from "./Routes/patientRoutes/patient.js";
 import psyRouter from "./Routes/psyRoutes/psychiatrist.js";
+import authRouter from "./Routes/authRouter.js";
 const app = express();
 app.use(express.json());
 app.use(cookieParser());
@@ -21,8 +22,8 @@ app.get("/", function (req, res, next) {
 });
 
 app.use("/api/v1/hospital",hospitalRouter);
-app.use("/api/v1/patient",patientRouter);
-app.use("/api/v1/psy",psyRouter);
+app.use("/api/v1/patient",authRouter,patientRouter);
+app.use("/api/v1/psy",authRouter,psyRouter);
 
 app.use(globalErrorHandler);
 

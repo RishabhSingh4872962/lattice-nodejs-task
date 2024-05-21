@@ -49,7 +49,7 @@ export const getHospital = async (req, res, next) => {
 export const registerHospital = async (req, res, next) => {
   const { name } = req.body;
   if (!name ) {
-    return next(createHttpError(400, "Enter the valid credensials,"));
+    return next(createHttpError(400, "Enter the valid credensials"));
   }
 
   const existHospital = await Hospital.findOne({

@@ -8,6 +8,10 @@ import {
 import multer from "multer";
 import { isUserLogged } from "../../Middlewares/isUserLogged.js";
 import createHttpError from "http-errors";
+import {
+  loginValidation,
+  patientRegisterValidations,
+} from "../../Validations/authValidation.js";
 
 const upload = multer({
   dest: "/patient_photo",
@@ -29,11 +33,17 @@ function checkRole(req, res, next) {
   }
 }
 
-psyRouter.post("/register",checkRole, asyncErrorHandler(registerPsy));
+psyRouter.post(
+  "/register",
+  checkRole,
+  loginValidation,
+  asyncErrorHandler(registerPsy)
+);
 
 psyRouter.post(
   "/add",
   upload.single("photo"),
+  patientRegisterValidations,
   isUserLogged,
   asyncErrorHandler(registerPaitent)
 );

@@ -4,10 +4,17 @@ import { Psychiatrist } from "../../Models/psychiatrist.model.js";
 import { Patient } from "../../Models/patient.model.js";
 import fs from "fs";
 import { Hospital } from "../../Models/hospital.model.js";
+import { validationResult } from "express-validator";
 
 let psyCashed = {};
 
 const registerPsy = async (req, res, next) => {
+
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
   const { name, email, password, hospital } = req.body;
   const existPsychiatrist = await Psychiatrist.findOne({ email });
   if (existPsychiatrist) {
@@ -35,9 +42,14 @@ const registerPsy = async (req, res, next) => {
 };
 
 const registerPaitent = async (req, res, next) => {
-  const { name, address, email, phone, password } = req.body;
 
-  const { countryCode, phoneNumber } = JSON.parse(phone);
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
+  const { name, address, email, password,countryCode, phoneNumber } = req.body;
+
 
   const { cachedPatient, expire } = psyCashed[`${email}`] ?? {
     cachedPatient: "",

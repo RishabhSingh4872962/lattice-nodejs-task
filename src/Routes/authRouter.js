@@ -41,7 +41,7 @@ async function logoutRoleBasedUser(req, res, next) {
 // refactor user login route
 async function userAuth(reqBody, res, next, userModel) {   
   const { email, password, role } = reqBody;
-  if (!email || !password) {
+  if (!email || !password || !role) {
     return next(createHttpError(400, "Enter the valid credensials"));
   }
   const user = await userModel.findOne({ email }).select("password email");

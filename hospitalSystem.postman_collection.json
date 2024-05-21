@@ -1,0 +1,328 @@
+{
+	"info": {
+		"_postman_id": "ec7c31ba-b68c-4797-9718-3fc72e3a086e",
+		"name": "hospital system",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23295925"
+	},
+	"item": [
+		{
+			"name": "Hospital Api's",
+			"item": [
+				{
+					"name": "get hospital Data",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":\"664b416424a8ccbbdb613d57\",\r\n    \"role\":\"Hospital\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}hospital",
+							"host": [
+								"{{url}}hospital"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register Hospital",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"AIIMS - All India Institute Of Medical Science\",\r\n     \"role\":\"Hospital\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/v1/hospital/register",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"hospital",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Patient Api's",
+			"item": [
+				{
+					"name": "get patient detail",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \"role\":\"patient\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}patient/ss",
+							"host": [
+								"{{url}}patient"
+							],
+							"path": [
+								"ss"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login Patient",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"email\": \"test1@gmail.com\",\r\n    \"password\": \"12345678\",\r\n     \"role\":\"patient\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}patient/login",
+							"host": [
+								"{{url}}patient"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout Patient",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"role\":\"patient\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}patient/logout",
+							"host": [
+								"{{url}}patient"
+							],
+							"path": [
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Psy Api's",
+			"item": [
+				{
+					"name": "Register Psy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"psy20\",\r\n    \"email\": \"psy20@gmail.com\",\r\n    \"password\": \"12345678\",\r\n    \"hospital\": \"AIIMS - All India Institute Of Medical Science\",\r\n     \"role\":\"psy\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}psy/register",
+							"host": [
+								"{{url}}psy"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login Psy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"email\": \"psy6@gmail.com\",\r\n    \"password\": \"12345678\",\r\n     \"role\":\"psy\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}psy/login",
+							"host": [
+								"{{url}}psy"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register patient",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "patient6",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "patient6@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "near block ibp pump,dhanauram",
+									"type": "text"
+								},
+								{
+									"key": "photo",
+									"type": "file",
+									"src": "postman-cloud:///1ef159fd-75d8-4b30-9afb-071612a464af"
+								},
+								{
+									"key": "role",
+									"value": "psy",
+									"type": "text"
+								},
+								{
+									"key": "phoneNumber",
+									"value": "6395428625",
+									"type": "text"
+								},
+								{
+									"key": "countryCode",
+									"value": "+91",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}psy/add",
+							"host": [
+								"{{url}}psy"
+							],
+							"path": [
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Patient",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \"role\":\"psy\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}psy/664b695d8192a764a6dc7a52",
+							"host": [
+								"{{url}}psy"
+							],
+							"path": [
+								"664b695d8192a764a6dc7a52"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout psy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \"role\":\"psy\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}psy/logout",
+							"host": [
+								"{{url}}psy"
+							],
+							"path": [
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

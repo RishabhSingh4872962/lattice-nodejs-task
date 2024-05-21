@@ -23,7 +23,7 @@ export const isUserLogged = async (req, res, next) => {
     return next(createHttpError(400, "Need a Role Access"));
   }
   role = role.toLowerCase();
-  if (role != userPayload?.role) {
+  if (role != userPayload?.role  ) {
     res.clearCookie("token");
     return next(createHttpError(400, "Access Denied"));
   }

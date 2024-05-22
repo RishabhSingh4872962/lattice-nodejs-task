@@ -26,7 +26,7 @@ step 1 - clone my repo in your local system run this command
 git clone https://github.com/RishabhSingh4872962/lattice-nodejs-task.git
 ```
 
-step 2 - open any code editor in the cloned folder 
+step 2 - open any code editor in the cloned folder or open this repo in any code editor and open ternimal
 
 step 3 - run this command in terminal
 ```
@@ -169,6 +169,29 @@ A web backend for a psychiatric patient registration system. Psychiatrists can r
   "msg": "Patient register Successfully"
 }
 ```
+
+
+### Remove Patient by only Psy
+
+- **Endpoint**: `${URL}/psy/:id`
+- **Method**: `DELETE`
+- **Description**: Remove Patient from DB.
+- **Request Params:**
+```json
+{
+  "id": "60c72b2f9b1d4c3a8e7e4b44"
+}
+```
+
+- **Response**:
+
+```json
+{
+  "success": "true",
+  "msg": "Patient Removed Successfully"
+}
+```
+
 
 ### Login Psychiatric
 

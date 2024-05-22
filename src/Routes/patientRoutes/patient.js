@@ -19,6 +19,7 @@ function checkRole(req,res,next) {
     if (req.user.role=="patient" && id!=req.user.id) {
         return next(createHttpError(400,"Access Denied"))
     }
+    
 
     next()
 }
